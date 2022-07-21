@@ -76,7 +76,7 @@ def add_consumed_amount_hydro():
     actual_date = EDate.get()
 
     with open ("water.txt", "a") as data_file:
-        data_file.write(f" The actual electricity count is {countT1} for T1, {countT2} for T2, {countT3} for T3 and the actual date is {actual_date}\n")
+        data_file.write(f" The actual electricity count is {countT1} and the actual date is {actual_date}\n")
         hydro_entry.delete(0,END)
         hydro_entry.delete(0,END)
         hydro_entry.delete(0,END)
