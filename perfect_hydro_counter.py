@@ -20,9 +20,9 @@ Tab = Notebook(window)
 
 F1 = Frame(Tab, width=500, height=500)
 F2 = Frame(Tab, width=500, height=500)
-F3 = Frame(Tab, width=500, height=500)
 
-Tab.add(F1, text="Hot Water")
+Tab.add(F1, text="Water and Hydro")
+Tab.add(F2, text="Actual Prices")
 Tab.grid(column=0, row=2)
 
 # Images
@@ -85,6 +85,12 @@ EDate.grid(column=4, row=3, sticky="w")
 EDate = DateEntry(F1, width=11, background="blue",
                   foreground="white", font=FONT_NAME)
 EDate.grid(column=4, row=3, sticky="w")
+
+
+# Prices F2 tab 
+
+hot_water_price_label = Label(F2, text=f"Hot water price is 211 rubles per M3. You have consumed so your total for hot water is" )
+hot_water_price_label.grid(column=0, row=2)
 
 
 window.mainloop()
