@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from tkcalendar import DateEntry
 from tkinter.ttk import Notebook
+import pandas as pd
 
 FONT_NAME = "Courier"
 
@@ -46,6 +47,13 @@ def add_all_consumed_data():
         cold_water_entry.delete(0, END)
         hot_water_entry.delete(0, END)
         hydro_entry.delete(0, END)
+    
+    dataset = pd.read_csv("hydro_data.csv")
+
+    data = dataset.iloc[0:1].values
+    with open("hydro_data1.csv", "a", newline="") as data_file:
+        data_file.write(f"{count_hydro}\n")
+        print(data_file)
 
 
 hot_water_label = Label(F1, text="Hot Water")
@@ -91,6 +99,7 @@ EDate.grid(column=4, row=3, sticky="w")
 
 hot_water_price_label = Label(F2, text=f"Hot water price is 211 rubles per M3. You have consumed so your total for hot water is" )
 hot_water_price_label.grid(column=0, row=2)
+
 
 
 window.mainloop()
