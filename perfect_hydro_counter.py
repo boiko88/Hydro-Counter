@@ -54,7 +54,20 @@ def add_all_consumed_data():
     with open("hydro_data1.csv", "a", newline="") as data_file:
         data_file.write(f"{count_hydro}\n")
         print(data_file)
+        
+def write_data():
+    actual_date = EDate.get()
+    with open("hydro_data1.csv", "a", newline="") as data_file:
+        data_file.write(f"{actual_date}")
 
+
+# Test CSV Button 
+
+test_csv_button = Button(F1, text="CSV Test",
+                        width=12, command=write_data)
+test_csv_button.grid(column=2, row=4)
+
+# Hot Water
 
 hot_water_label = Label(F1, text="Hot Water")
 hot_water_label.grid(column=0, row=2)
