@@ -33,6 +33,9 @@ canvas = Canvas(F1, width=400, height=400)
 canvas.create_image(200, 200, image=counter_image_hot)
 canvas.grid(column=0, row=1, columnspan=3)
 
+def empty_data_error():
+    pass
+
 
 def add_all_consumed_data():
 
@@ -59,6 +62,9 @@ def write_data():
     actual_date = EDate.get()
     with open("hydro_data1.csv", "a", newline="") as data_file:
         data_file.write(f"{actual_date}")
+        cold_water_entry.delete(0, END)
+        hot_water_entry.delete(0, END)
+        hydro_entry.delete(0, END)
 
 
 # Test CSV Button 
