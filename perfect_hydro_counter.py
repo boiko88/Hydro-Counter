@@ -110,10 +110,6 @@ EDate = DateEntry(F1, width=11, background="blue",
                   foreground="white", font=FONT_NAME)
 EDate.grid(column=4, row=3, sticky="w")
 
-EDate = DateEntry(F1, width=11, background="blue",
-                  foreground="white", font=FONT_NAME)
-EDate.grid(column=4, row=3, sticky="w")
-
 
 # Prices F2 tab 
 
