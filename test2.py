@@ -1,5 +1,3 @@
-from email.quoprimime import quote
-import hashlib
 import csv
 from tkinter import *
 from itertools import zip_longest
@@ -14,32 +12,6 @@ info = ""
 
 r = [f"{info}"]
 
-def write_data():
-    with open('data.csv', "w", newline="") as f:
-        info = cold_water_entry.get()
-        writer = csv.writer(f, delimiter=",")
-        writer.writerow(fields)
-        for i in info:
-            writer.writerow(i)
-            cold_water_entry.delete(0, END)
-
-def write_list_csv():
-    with open('data_new.csv', 'w', newline='') as f:
-        writer = csv.writer(f, delimiter=",")
-        writer.writerow(fields)
-        w = csv.writer(f, delimiter=' ',)
-        for row in r:
-            row = cold_water_entry.get()
-            w.writerow(row)
-            cold_water_entry.delete(0, END)
-        for row in r:
-            row = hot_water_entry.get()
-            w.writerow(row)
-            hot_water_entry.delete(0, END)   
-        for row in r:
-            row = hydro_entry.get()
-            w.writerow(row)
-            hydro_entry.delete(0, END)
 
 def works():
     hot_water = []
@@ -61,11 +33,6 @@ def works():
     
 
 # Test CSV Button 
-
-
-# button = Button(text="Test",
-#                         width=12, command=write_list_csv)
-# button.grid(column=1, row=2)
 
 button2 = Button(text="Test CSV",
                         width=12, command=works)
