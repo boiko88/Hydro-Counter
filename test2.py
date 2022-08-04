@@ -31,6 +31,10 @@ canvas.grid(column=0, row=0, columnspan=3)
 
 # Functions
 
+def not_all_data_error(actual_cold_water, actual_hydro, actual_hot_water):
+    pass
+    
+
 
 def works():
     hot_water = []
@@ -38,20 +42,22 @@ def works():
     hydro = []
     data = [hot_water, cold_water, hydro]
     export_data = zip_longest(*data, fillvalue='')
-    with open('counter_data.csv', 'w', encoding="ISO-8859-1", newline='') as file:
-        write = csv.writer(file)
-        actual_cold_water = cold_water_entry.get()
-        hot_water.append(actual_cold_water)
-        actual_hot_water = hot_water_entry.get()
-        cold_water.append(actual_hot_water)
-        actual_hydro = hydro_entry.get()
-        hydro.append(actual_hydro)
-        write.writerow(("hot water", "cold water", "hydro"))
-        write.writerows(export_data)
-        cold_water_entry.delete(0, END)
-        hot_water_entry.delete(0, END)
-        hydro_entry.delete(0, END)
-
+    actual_cold_water = cold_water_entry.get()
+    actual_hot_water = hot_water_entry.get()
+    actual_hydro = hydro_entry.get()
+    if actual_cold_water == "" or actual_hydro == "" or actual_hot_water == "":
+        print("Some fields are empty")    
+    else:    
+        with open('counter_data.csv', 'w', encoding="ISO-8859-1", newline='') as file:
+            write = csv.writer(file)
+            hot_water.append(actual_cold_water)
+            cold_water.append(actual_hot_water)
+            hydro.append(actual_hydro)
+            write.writerow(("hot water", "cold water", "hydro"))
+            write.writerows(export_data)
+            cold_water_entry.delete(0, END)
+            hot_water_entry.delete(0, END)
+            hydro_entry.delete(0, END)
 
 
 # Test CSV Button
