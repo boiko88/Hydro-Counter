@@ -2,6 +2,9 @@ import csv
 from tkinter import *
 from itertools import zip_longest
 from tkcalendar import DateEntry
+from tkinter import messagebox
+ 
+
 
 
 FONT_NAME = "Courier"
@@ -12,6 +15,10 @@ window.config(padx=10, pady=10)
 
 fields = ["Hot", "Cold", "Electricity"]
 info = ""
+
+hot_water = []
+cold_water = []
+hydro = []
 
 
 r = [f"{info}"]
@@ -31,23 +38,22 @@ canvas.grid(column=0, row=0, columnspan=3)
 
 # Functions
 
-def not_all_data_error(actual_cold_water, actual_hydro, actual_hot_water):
-    pass
-    
+
+def clean_entries():
+    cold_water_entry.delete(0, END)
+    hot_water_entry.delete(0, END)
+    hydro_entry.delete(0, END)
 
 
 def works():
-    hot_water = []
-    cold_water = []
-    hydro = []
     data = [hot_water, cold_water, hydro]
     export_data = zip_longest(*data, fillvalue='')
     actual_cold_water = cold_water_entry.get()
     actual_hot_water = hot_water_entry.get()
     actual_hydro = hydro_entry.get()
     if actual_cold_water == "" or actual_hydro == "" or actual_hot_water == "":
-        print("Some fields are empty")    
-    else:    
+        messagebox.showinfo("Empty Entry Error", "Some entries are empty")
+    else:
         with open('counter_data.csv', 'w', encoding="ISO-8859-1", newline='') as file:
             write = csv.writer(file)
             hot_water.append(actual_cold_water)
@@ -55,9 +61,7 @@ def works():
             hydro.append(actual_hydro)
             write.writerow(("hot water", "cold water", "hydro"))
             write.writerows(export_data)
-            cold_water_entry.delete(0, END)
-            hot_water_entry.delete(0, END)
-            hydro_entry.delete(0, END)
+            clean_entries()
 
 
 # Test CSV Button
