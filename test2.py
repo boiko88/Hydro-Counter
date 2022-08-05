@@ -3,15 +3,29 @@ from tkinter import *
 from itertools import zip_longest
 from tkcalendar import DateEntry
 from tkinter import messagebox
+from tkinter.ttk import Notebook
  
 
 
 
 FONT_NAME = "Courier"
 
+# UI
+
 window = Tk()
 window.title("Water Counter")
 window.config(padx=10, pady=10)
+
+# 2 different frames
+
+Tab = Notebook(window)
+
+F1 = Frame(Tab, width=500, height=500)
+F2 = Frame(Tab, width=500, height=500)
+
+Tab.add(F1, text="Water and Hydro")
+Tab.add(F2, text="Actual Prices")
+Tab.grid(column=0, row=0)
 
 fields = ["Hot", "Cold", "Electricity"]
 info = ""
@@ -25,16 +39,16 @@ r = [f"{info}"]
 
 # Date
 
-EDate = DateEntry(width=11, background="blue",
+EDate = DateEntry(F1, width=11, background="blue",
                   foreground="white", font=FONT_NAME)
 EDate.grid(column=3, row=3, sticky="w")
 
 # Images
 
 counter_image_hot = PhotoImage(file="images/water1.png")
-canvas = Canvas(width=400, height=400)
+canvas = Canvas(F1, width=400, height=400)
 canvas.create_image(200, 200, image=counter_image_hot)
-canvas.grid(column=0, row=0, columnspan=3)
+canvas.grid(column=1, row=0, columnspan=3)
 
 # Functions
 
@@ -66,31 +80,31 @@ def works():
 
 # Test CSV Button
 
-button2 = Button(text="Add Data",
+button2 = Button(F1, text="Add Data",
                  width=12, command=works)
-button2.grid(column=2, row=3)
+button2.grid(column=4, row=3)
 
 # Entries
 
-cold_water_entry = Entry(width=25)
-cold_water_entry.grid(column=1, row=2)
+cold_water_entry = Entry(F1, width=25)
+cold_water_entry.grid(column=2, row=2)
 
-hot_water_entry = Entry(width=25)
-hot_water_entry.grid(column=2, row=2)
+hot_water_entry = Entry(F1, width=25)
+hot_water_entry.grid(column=3, row=2)
 
-hydro_entry = Entry(width=25)
-hydro_entry.grid(column=3, row=2)
+hydro_entry = Entry(F1, width=25)
+hydro_entry.grid(column=4, row=2)
 
 # Label
 
-hot_water_label = Label(text="Hot Water")
-hot_water_label.grid(column=1, row=1)
+hot_water_label = Label(F1, text="Hot Water")
+hot_water_label.grid(column=2, row=1)
 
-cold_water_label = Label(text="Cold Water")
-cold_water_label.grid(column=2, row=1)
+cold_water_label = Label(F1, text="Cold Water")
+cold_water_label.grid(column=3, row=1)
 
-hydro_label = Label(text="Hydro")
-hydro_label.grid(column=3, row=1)
+hydro_label = Label(F1, text="Hydro")
+hydro_label.grid(column=4, row=1)
 
 
 window.mainloop()
